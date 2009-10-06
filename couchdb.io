@@ -1,9 +1,11 @@
-CouchDb := Object clone do(
-    url ::= ""
+doRelativeFile("./json.io")
 
+CouchDb := Object clone do(
     getDb := method(name,
         CouchDatabase with(self url .. name .. "/")
     )
+
+    url ::= ""
 
     with := method(serverUrl,
         self clone setUrl(serverUrl)
@@ -11,13 +13,13 @@ CouchDb := Object clone do(
 )
 
 CouchDatabase := Object clone do(
+    at := method(id,
+        URL with(self url .. id) fetch parseJson
+    )
+
     url ::= ""
 
     with := method(dbUrl,
         self clone setUrl(dbUrl)
-    )
-
-    squareBrackets := method(id,
-        URL with(self url .. id) fetch
     )
 )
