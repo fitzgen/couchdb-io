@@ -2,7 +2,7 @@ doRelativeFile("./json.io")
 
 CouchDb := Object clone do(
     getDb := method(name,
-        CouchDatabase with(self url .. name .. "/")
+        CouchDbDatabase with(self url .. name .. "/")
     )
 
     url ::= ""
@@ -12,7 +12,7 @@ CouchDb := Object clone do(
     )
 )
 
-CouchDatabase := Object clone do(
+CouchDbDatabase := Object clone do(
     at := method(id,
         URL with(self url .. id) fetch parseJson
     )
